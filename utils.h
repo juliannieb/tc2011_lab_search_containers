@@ -132,7 +132,7 @@ bool isFinalState(vsc currState, vsc final_state) {
 void backTrack(Node *endState) {
 	Node *curr = endState;
 	if (endState != NULL) {
-		cout << "Total cost = " << endState -> cost_so_far << endl;
+		cout << endState -> cost_so_far << endl;
 	}
 	stack< pair<int, int> > steps = stack<pair<int, int> >();
 	while(curr != NULL) {
