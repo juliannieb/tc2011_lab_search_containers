@@ -9,12 +9,16 @@
 
 using namespace std;
 
+struct node;
+
 typedef stack<char> sc;
 typedef vector<sc> vsc;
 typedef pair<vsc, vsc> pvsc;
 typedef pair<int, int> ii;
 typedef pair<int, pvsc> pipvsc;
 typedef set<vsc> setvsc;
+typedef struct node Node;
+typedef queue<Node*> queueNode;
 
 struct node {
 	struct node *parent;
@@ -22,9 +26,6 @@ struct node {
 	ii movement;
 	int cost_so_far;
 };
-
-typedef struct node Node;
-typedef queue<Node*> queueNode;
 
 void printState(vsc state) {
 	cout << "{ ";
@@ -74,9 +75,6 @@ pipvsc readInput() {
 	string line2, line3;
 	getline (cin, line2);
 	getline (cin, line3);
-
-	//cout << limit << " - " << line2 << " - " << line3 << endl;
-
 	vsc initial_state = createState(line2);
 	vsc final_state = createState(line3);
 
@@ -85,9 +83,6 @@ pipvsc readInput() {
 }
 
 bool isFinalState(vsc currState, vsc final_state) {
-	//printState(currState);
-	//printState(final_state);
-	//cout << endl;
 	bool match = true;
 	for (int i = 0; i < final_state.size(); i++) {
 		if (!final_state[i].empty() && final_state[i].top() == 'X') {
@@ -138,7 +133,6 @@ void backTrack(Node *endState) {
 	}
 	while(!steps.empty()) {
 		ii curr_step = steps.top();
-		//cout << "(" << curr_step.first << "," << curr_step.second << ")" << endl;
 		steps.pop();
 	}
 }

@@ -19,9 +19,7 @@ Node* bfs(Node *head, int limit, vsc final_state) {
 					char char_to_change = newState[i].top();
 					newState[i].pop();
 					newState[j].push(char_to_change);
-
 					if (!visited.count(newState)) {
-
 						ii movement = ii(i, j);
 						int newCost = 1 + abs(i - j) + cost_so_far;
 						Node *newNode = new Node;
@@ -30,11 +28,9 @@ Node* bfs(Node *head, int limit, vsc final_state) {
 						newNode -> movement = movement;
 						newNode -> cost_so_far = newCost;
 						visited.insert(newState);
-
 						if (isFinalState(newState, final_state)) {
 							return newNode;
 						}
-
 						frontierQueue.push(newNode);
 					}
 				}
