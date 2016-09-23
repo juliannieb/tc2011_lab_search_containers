@@ -10,6 +10,7 @@
 using namespace std;
 
 struct node;
+struct compare;
 
 typedef stack<char> sc;
 typedef vector<sc> vsc;
@@ -19,6 +20,8 @@ typedef pair<int, pvsc> pipvsc;
 typedef set<vsc> setvsc;
 typedef struct node Node;
 typedef queue<Node*> queueNode;
+typedef pair<int, Node*> pairIntNode;
+typedef priority_queue<pairIntNode, std::vector<pairIntNode>, compare > priorityQueuePIN;
 
 struct node {
 	struct node *parent;
@@ -26,6 +29,12 @@ struct node {
 	ii movement;
 	int cost_so_far;
 };
+
+struct compare {  
+	bool operator()(const pairIntNode& l, const pairIntNode& r) {  
+    	return l.first > r.first;  
+	}  
+};  
 
 void printState(vsc state) {
 	cout << "{ ";
@@ -133,6 +142,7 @@ void backTrack(Node *endState) {
 	}
 	while(!steps.empty()) {
 		ii curr_step = steps.top();
+		cout << "(" << curr_step.first << "," << curr_step.second << ")" << endl;
 		steps.pop();
 	}
 }
