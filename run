@@ -1,11 +1,4 @@
 #!/bin/bash
 
 # Java example:
-JAR=path_to_your_jar_file
-
-if [ ! -f $JAR ]; then
-  # Do something to build your jar file
-  mvn assembly:assembly > /dev/null
-fi
-
-java -jar $JAR
+./a.out
