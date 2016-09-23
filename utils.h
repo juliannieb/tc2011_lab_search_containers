@@ -142,7 +142,8 @@ void backTrack(Node *endState) {
 	}
 	while(!steps.empty()) {
 		ii curr_step = steps.top();
-		cout << "(" << curr_step.first << "," << curr_step.second << ")" << endl;
 		steps.pop();
+		cout << "(" << curr_step.first << ", " << curr_step.second << ")" << (steps.empty() ? "" : "; ");
 	}
+	cout << endl;
 }
