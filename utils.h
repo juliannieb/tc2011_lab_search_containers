@@ -78,6 +78,46 @@ vsc createState(string line) {
 	return state;
 }
 
+int heuristic (char c, vsc final_state, int currentStack) {
+	int movesToFinalStack = -1;
+	int movesToClosestX = -1;
+	bool match = false;
+	int stack = 0;
+	
+	for (int i = 0; i < final_state.size(); i++) 
+	{
+		if (!final_state[i].empty() && final_state[i].top() == 'X') 
+		{
+			if (movesToClosestX == -1) {
+				movesToClosestX = i; 
+			}
+			continue; 
+		}
+		else 
+		{
+			while(!final_state[i].empty()) 
+			{
+				char c_curr = final_state[i].top();
+				final_state[i].pop();
+				if (c == c_curr)
+				{
+					match = true;
+					movesToFinalStack = i;
+					break; 
+				}	
+			}
+			if (match) {
+				break; 		
+			}
+		}
+	}
+	if (!match) {
+		return abs(currentStack - movesToClosestX);
+	}
+	return abs(currentStack - movesToFinalStack);
+}
+
+
 pipvsc readInput() {
 	int limit;
 	scanf("%i%*c", &limit);
